@@ -1,4 +1,4 @@
-# Stack Overflow for Teams SCIM-based User Deactivation
+# Stack Overflow for Teams SCIM-based User Activation
 A SCIM API script for Stack Overflow for Teams that can automate the Activation of a list of specific existing users.
 
 
