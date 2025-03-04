@@ -1,3 +1,9 @@
+'''
+This Python script is a working proof of concept example of using Stack Overflow APIs for SCIM User Activation. 
+If you run into difficulties, please leave feedback in the Github Issues.
+'''
+
+
 # Standard Python libraries
 import argparse
 import json
