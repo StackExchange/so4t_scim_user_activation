@@ -8,7 +8,8 @@ class ScimClient:
         self.base_url = url
         self.token = token
         self.headers = {
-            'Authorization': f"Bearer {self.token}"
+            'Authorization': f"Bearer {self.token}",
+            'User-Agent': 'so4t_scim_user_activation/1.0 (http://your-app-url.com; your-contact@email.com)'
         }
         if "stackoverflowteams.com" in self.base_url: # For Basic and Business tiers
             self.soe = False
@@ -24,7 +25,10 @@ class ScimClient:
         # Get a single user by account ID
 
         scim_url = f"{self.scim_url}/{account_id}"
-        response = requests.get(scim_url, headers=self.headers, proxies=self.proxies)
+        # Add User-Agent to headers
+        headers = self.headers.copy()
+        headers['User-Agent'] = 'so4t_scim_user_activation/1.0 (http://your-app-url.com; your-contact@email.com)'
+        response = requests.get(scim_url, headers=headers, proxies=self.proxies)
 
         if response.status_code == 404:
             print(f"User with account ID {account_id} not found.")
@@ -73,7 +77,10 @@ class ScimClient:
         items = []
         while True: # Keep performing API calls until all items are received
             print(f"Getting 100 results from {self.scim_url} with startIndex of {params['startIndex']}")
-            response = requests.get(self.scim_url, headers=self.headers, params=params, 
+            # Add User-Agent to headers
+            headers = self.headers.copy()
+            headers['User-Agent'] = 'so4t_scim_user_activation/1.0 (http://your-app-url.com; your-contact@email.com)'
+            response = requests.get(self.scim_url, headers=headers, params=params, 
                                     proxies=self.proxies)
             if response.status_code != 200:
                 print(f"API call failed with status code: {response.status_code}.")
