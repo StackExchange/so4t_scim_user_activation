@@ -32,7 +32,7 @@ def main():
         account_id = scim_user_lookup(all_users, user_id)
         if account_id: # if user_lookup returns None, skip this user
             print(f"Activating user with ID {account_id}...")
-            scim_client.update_user(account_id, active=False)
+            scim_client.update_user(account_id, active=True)
 
 
 def get_args():
@@ -58,13 +58,13 @@ def get_args():
     parser.add_argument(
         "--csv",
         type=str,
-        help="Path to CSV file with a list of users to deactivate."
+        help="Path to CSV file with a list of users to activate."
     )
 
     # parser.add_argument(
     #     "--json",
     #     type=str,
-    #     help="A JSON file with a list of users to deactivate."
+    #     help="A JSON file with a list of users to activate."
     # )
 
     #parser.add_argument('--proxy',
@@ -79,13 +79,13 @@ def get_args():
 
 def get_users_from_csv(csv_file):
 
-    users_to_deactivate = []
+    users_to_activate = []
 
     with open(csv_file, 'r') as f:
         for line in f:
-            users_to_deactivate.append(line.strip())
+            users_to_activate.append(line.strip())
 
-    return users_to_deactivate
+    return users_to_activate
 
 
 # def get_users_from_json(json_file):
