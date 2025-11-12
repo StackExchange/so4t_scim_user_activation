@@ -1,5 +1,5 @@
 '''
-This Python script is a working proof of concept example of using Stack Overflow APIs for SCIM User Activation. 
+This Python script is a working proof of concept example of using Stack Internal APIs for SCIM User Activation. 
 If you run into difficulties, please leave feedback in the Github Issues.
 '''
 
@@ -26,7 +26,7 @@ def main():
     all_users = scim_client.get_all_users()
     export_to_json(all_users, "scim_users.json")
 
-    # Create and format list of users to deactivate
+    # Create and format list of users to activate
     csv_users_to_activate = get_users_from_csv(args.csv)
     for user_id in csv_users_to_activate:
         account_id = scim_user_lookup(all_users, user_id)
@@ -38,21 +38,21 @@ def main():
 def get_args():
 
     parser = argparse.ArgumentParser(
-        description="Activate existing users for Stack Overflow for Teams."
+        description="Activate existing users for Stack Internal."
     )
 
     parser.add_argument(
         "--token",
         type=str,
         required=True,
-        help="The SCIM token for your Stack Overflow for Teams site."
+        help="The SCIM token for your Stack Internal site."
     )
 
     parser.add_argument(
         "--url",
         type=str,
         required=True,
-        help="The base URL for your Stack Overflow for Teams site."
+        help="The base URL for your Stack Internal site."
     )
 
     parser.add_argument(
