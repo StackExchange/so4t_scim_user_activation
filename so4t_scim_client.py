@@ -11,10 +11,10 @@ class ScimClient:
             'Authorization': f"Bearer {self.token}",
             'User-Agent': 'so4t_scim_user_activation/1.0 (http://your-app-url.com; your-contact@email.com)'
         }
-        if "stackoverflowteams.com" in self.base_url: # For Basic and Business tiers
+        if "stackoverflowteams.com" in self.base_url: # For Stack Internal (Business) or Basic
             self.soe = False
             self.scim_url = f"{self.base_url}/auth/scim/v2/users"
-        else: # For Enterprise tier
+        else: # For Stack Internal (Enterprise)
             self.soe = True
             self.scim_url = f"{self.base_url}/api/scim/v2/users"
         
